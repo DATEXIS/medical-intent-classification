@@ -1,0 +1,8 @@
+
+from lightning.pytorch.cli import LightningCLI
+#from bert_model import BertClassificationModel, MultiTaskBertClassificationModel
+from src.encoder_models.datamodule import NextIntentDataModule
+from next_intent_bert import NextIntentBertClassificationModel
+
+
+cli = LightningCLI(NextIntentBertClassificationModel, NextIntentDataModule)
