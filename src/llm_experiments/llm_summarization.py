@@ -14,15 +14,15 @@ from utils.promptenum import LLamaEnum, PhiEnum, QwenEnum
 import os
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--inference_server", type=str, default="http://10.244.4.177:80")
+    parser.add_argument("--inference_server", type=str)
     parser.add_argument("--model_id", type=str)
     parser.add_argument("--encoder_model_name", type=str)
-    parser.add_argument("--train_file", type=str, default ="/Users/toroe/Workspace/medical_intent_verification/dataset/train_doc_only_synthetic_stratified_all.json")
-    parser.add_argument("--intent_train_file", type=str, default ="/Users/toroe/Workspace/medical_intent_verification/dataset/train_doc_only_synthetic_stratified_all.json")
-    parser.add_argument("--dev_file", type=str,default ="/Users/toroe/Workspace/medical_intent_verification/dataset/dev_doc_only_synthetic_stratified_all.json")
-    parser.add_argument("--test_file", type=str, default ="/Users/toroe/Workspace/medical_intent_verification/dataset/test_doc_only_synthetic_stratified_all.json")
-    parser.add_argument("--grouped_dialogues_path", type=str, default="/Users/toroe/Workspace/medical_intent_verification/data/all_dialogues_annotated.json")
-    parser.add_argument("--aci_root_data_path", type=str, default="/Users/toroe/Workspace/aci-bench/data/challenge_data_json")
+    parser.add_argument("--train_file", type=str)
+    parser.add_argument("--intent_train_file", type=str)
+    parser.add_argument("--dev_file", type=str)
+    parser.add_argument("--test_file", type=str)
+    parser.add_argument("--grouped_dialogues_path")
+    parser.add_argument("--aci_root_data_path", type=str)
     parser.add_argument("--summarise_section", action="store_true")
     parser.add_argument("--filter", action="store_true")
     parser.add_argument("--in_context", action="store_true")
@@ -32,10 +32,10 @@ if __name__ == "__main__":
     parser.add_argument("--results_path", type=str, default="/pvc/experiments")
     args = parser.parse_args()
     print("Start up")
-    hf_token = "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"
+    hf_token = ""
     hf_cache = "/pvc/huggingface_cache/models"
     client = InferenceClient(model=args.inference_server, token=hf_token)
-    open_ai_token = "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"
+    open_ai_token = ""
     model_name = args.model_id.split("/")[-1]
     
     out_path = f"{args.results_path}/{model_name}"
